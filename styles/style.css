@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #F3EFFF;  /* фон всей страницы */
+    background-color: #F3EFFF;
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
@@ -17,7 +17,6 @@ body {
 
 .app-container {
     width: 100%;
-    max-width: 1440px;
     background-color: #F3EFFF;
     margin: 0 auto;
 }
@@ -38,7 +37,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* ===== ВТОРАЯ СТРОКА: Меню (с иконкой рядом) | Имя | Выход ===== */
+/* ===== ПАНЕЛЬ ДЕЙСТВИЙ ===== */
 .action-bar {
     display: flex;
     align-items: center;
@@ -50,11 +49,11 @@ body {
 .menu-wrapper {
     display: flex;
     align-items: center;
-    gap: 12px;  /* иконка и кнопка ближе */
+    gap: 12px;
 }
 
 .menu-icon-large {
-    height: 42px;   /* увеличили размер */
+    height: 42px;
     width: auto;
     object-fit: contain;
 }
@@ -88,7 +87,7 @@ body {
     color: #000000;
 }
 
-/* ===== ОСНОВНОЙ БЛОК С ФОНОМ #E4EDFF ===== */
+/* ===== ОСНОВНОЙ БЛОК ===== */
 .content-card {
     background-color: #E4EDFF;
     margin: 0 24px 32px 24px;
@@ -97,13 +96,114 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
+    position: relative;
 }
 
-/* Заголовок таблицы*/
+/* ===== ОВЕРЛЕЙ ОШИБКИ ===== */
+.error-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(228, 237, 255, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-radius: 5px;
+}
+
+.error-modal {
+    background-color: #FEF2F2;
+    border-radius: 24px;
+    padding: 32px 40px;
+    text-align: center;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #FFD9D9;
+}
+
+.error-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+}
+
+.error-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E2A3E;
+    margin-bottom: 12px;
+}
+
+.error-message {
+    font-size: 14px;
+    color: #5A6B7C;
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+.error-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.error-btn {
+    background-color: #E50079;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s;
+}
+
+.error-btn:hover {
+    opacity: 0.85;
+}
+
+.reload-btn {
+    background-color: #658FE9;
+}
+
+/* Демо-кнопка */
+.demo-error-btn {
+    background-color: #E50079;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.demo-error-btn:hover {
+    opacity: 0.85;
+}
+
+/* ===== НОРМАЛЬНОЕ СОСТОЯНИЕ ===== */
+#normalState {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    width: 100%;
+}
+
+/* Заголовок таблицы */
 .table-title {
     width: 100%;
     font-size: 20px;
-    font-style: bold;
+    font-weight: 400;
     color: black;
     margin-bottom: 8px;
     text-align: left;
@@ -114,10 +214,8 @@ body {
     flex: 2;
     min-width: 280px;
     background: transparent;
-    
 }
 
-/* Таблица — цельная, без разрывов */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -125,7 +223,6 @@ body {
     background-color: #F1F5F9;
 }
 
-/* Все ячейки — по центру */
 .data-table th,
 .data-table td {
     text-align: center;
@@ -133,27 +230,30 @@ body {
     padding: 12px 8px;
 }
 
-/* Общий фон для th — прозрачный, чтобы видно было фон таблицы */
 .data-table th {
+    width: 25%;
     background-color: transparent;
-    padding: 8px 4px;  /* чуть меньше, чтобы кнопки не слипались */
+    padding: 8px 4px;
 }
 
-/* А вот это — САМИ КНОПКИ внутри th */
-.data-table th .col-button {
+/* Кнопки-заголовки */
+.data-table th .col-button,
+.col-button-style {
     background-color: #658FE9;
     color: white;
     font-weight: 600;
-    padding: 10px 8px;
+    padding: 10px 4px;
     text-align: center;
-    border-radius: 0px;
+    border-radius: 5px;
     display: block;
-    min-width: 120px;
+    width: 100%;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 17px;
+    white-space: normal;
+    word-break: break-word;
 }
 
-/* Ячейки с данными */
+/* Ячейки данных */
 .data-table td {
     background-color: #F1F5F9;
     color: #1A2C3E;
@@ -163,46 +263,27 @@ body {
 
 /* Шахматный узор */
 .data-table tr:nth-child(odd) td:nth-child(odd) {
-    background-color: #ffffff;  /* белый */
+    background-color: #ffffff;
 }
-
 .data-table tr:nth-child(odd) td:nth-child(even) {
-    background-color: #F1F5F9;  /* серый */
+    background-color: #F1F5F9;
 }
-
-/* Чётные строки (2, 4, 6...) — цвета меняются местами */
 .data-table tr:nth-child(even) td:nth-child(odd) {
-    background-color: #F1F5F9;  /* серый */
+    background-color: #F1F5F9;
 }
-
 .data-table tr:nth-child(even) td:nth-child(even) {
-    background-color: #ffffff;  /* белый */
+    background-color: #ffffff;
 }
-
 
 .data-table thead tr {
     border-bottom: 1px solid #E2E8F0;
 }
 
-
 .data-table tr:last-child td {
     border-bottom: none;
 }
 
-/* Стиль названий колонок  */
-.col-button-style {
-    background-color: #658FE9;
-    color: white;
-    font-weight: 600;
-    padding: 10px 8px;
-    border-radius: 5px;
-    display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    letter-spacing: 0.3px;
-    width: 85%; 
-}
-
-/* ПРАВАЯ ЧАСТЬ */
+/* ===== ПРАВАЯ ПАНЕЛЬ ===== */
 .right-panel {
     flex: 1.2;
     min-width: 260px;
@@ -220,23 +301,23 @@ body {
 
 .card-title {
     font-size: 20px;
+    font-weight: 400;
     color: black;
-    align-items: center;
     margin-bottom: 14px;
-    padding-left: 12px;
     text-align: center;
 }
 
 .total-number {
     font-size: 56px;
-    color: #F1F5F9;
+    font-weight: 500;
+    color: white;
     text-align: center;
-    background: #658FE9;
+    background-color: #658FE9;
     border-radius: 5px;
     padding: 12px 8px;
 }
 
-/* ЧЕКБОКС */
+/* Чекбокс */
 .risk-toggle {
     background-color: #FEF2F2;
     padding: 14px 18px;
@@ -246,9 +327,11 @@ body {
 .risk-label {
     color: #1F2A40;
     font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     display: flex;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -269,7 +352,8 @@ body {
 .checkbox-custom::after {
     content: "✓";
     font-size: 14px;
-    color: #000000;
+    font-weight: bold;
+    color: white;
     display: none;
     text-align: center;
     line-height: 16px;
@@ -279,7 +363,7 @@ body {
     display: block;
 }
 
-/* оповещения */
+/* Оповещения */
 .alerts-list {
     display: flex;
     flex-direction: column;
@@ -289,6 +373,7 @@ body {
 
 .alert-item {
     font-size: 13px;
+    font-weight: 500;
     padding: 6px 6px 6px 0;
     border-bottom: 1px solid #FFE2E2;
     display: flex;
@@ -303,18 +388,22 @@ body {
 }
 
 .alert-red {
-    background-color: #E50079;
+    background-color: #EB4343;
 }
 
 .alert-green {
     background-color: #2BA150;
 }
 
+.alert-orange {
+    background-color: orange;
+}
+
 .alert-text {
     color: #1E293B;
 }
 
-/* адаптив */
+/* ===== АДАПТИВ ===== */
 @media (max-width: 850px) {
     .content-card {
         flex-direction: column;
