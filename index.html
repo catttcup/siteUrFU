@@ -31,7 +31,14 @@
         <div class="content-card">
             <div class="table-title">Мониторинг приёмной кампании</div>
 
-            <!-- ===== СОСТОЯНИЕ ОШИБКИ (по умолчанию скрыто) ===== -->
+            <!-- ===== СОСТОЯНИЕ ЗАГРУЗКИ (СПИННЕР) ===== -->
+            <div id="loadingState" class="loading-state" style="display: none;">
+                <div class="spinner-wrapper">
+                    <div class="spinner"></div>
+                    <p class="loading-text">Загрузка данных...</p>
+                </div>
+            </div>
+                        <!-- ===== СОСТОЯНИЕ ОШИБКИ (НОВОЕ) ===== -->
             <div id="errorOverlay" class="error-overlay" style="display: none;">
                 <div class="error-modal">
                     <h3 class="error-title">Ошибка загрузки таблицы</h3>
@@ -40,11 +47,12 @@
                         Вы можете повторить попытку или перезагрузить страницу.
                     </p>
                     <div class="error-buttons">
-                        <button class="error-btn retry-btn" id="retryBtn">Повторить попытку</button>
+                        <button class="error-btn" id="retryBtn">Повторить попытку</button>
                         <button class="error-btn reload-btn" id="reloadBtn">Перезагрузить</button>
                     </div>
                 </div>
             </div>
+
 
             <!-- ===== НОРМАЛЬНОЕ СОСТОЯНИЕ (таблица + правая панель) ===== -->
             <div id="normalState">
@@ -115,22 +123,7 @@
                     <div class="info-card" id="alertsCard">
                         <div class="card-title">Оповещения</div>
                         <div class="alerts-list">
-                            <div class="alert-item">
-                                <span class="alert-badge alert-red"></span>
-                                <span class="alert-text">Экология - 25% (недобор)</span>
-                            </div>
-                            <div class="alert-item">
-                                <span class="alert-badge alert-red"></span>
-                                <span class="alert-text">Психология - 160% (перебор)</span>
-                            </div>
-                            <div class="alert-item">
-                                <span class="alert-badge alert-green"></span>
-                                <span class="alert-text">Экономика - 100% (норма)</span>
-                            </div>
-                            <div class="alert-item">
-                                <span class="alert-badge alert-red"></span>
-                                <span class="alert-text">Информатика и вычислительная техника - 10% (недобор)</span>
-                            </div>
+                            <!-- сюда JS сам добавит нужные оповещения -->
                         </div>
                     </div>
                 </div>
@@ -138,9 +131,10 @@
         </div>
     </div>
 
-    <!-- ДЕМО-КНОПКА ДЛЯ ТЕСТИРОВАНИЯ ОШИБКИ (в реальном проекте удалить) -->
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
-        <button id="demoErrorBtn" class="demo-error-btn">Показать ошибку</button>
+    <!-- ДЕМО-КНОПКИ ДЛЯ ТЕСТИРОВАНИЯ (в реальном проекте удалить) -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999; display: flex; gap: 10px;">
+        <button id="demoLoadingBtn" class="demo-error-btn">Загрузка</button>
+        <button id="demoErrorBtn" class="demo-error-btn">Ошибка</button>
     </div>
 
     <script src="scripts/script.js"></script>

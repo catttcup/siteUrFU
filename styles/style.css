@@ -99,7 +99,42 @@ body {
     position: relative;
 }
 
-/* ===== ОВЕРЛЕЙ ОШИБКИ ===== */
+/* ===== ЗАГРУЗКА (СПИННЕР) ===== */
+.loading-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 400px;
+    background-color: #F1F5F9;
+    border-radius: 16px;
+}
+
+.spinner-wrapper {
+    text-align: center;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #E2E8F0;
+    border-top: 4px solid #E50079;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 14px;
+    color: #5A6B7C;
+}
+
+/* ===== ОВЕРЛЕЙ ОШИБКИ (блюр всей страницы) ===== */
 .error-overlay {
     position: absolute;
     top: 0;
@@ -122,7 +157,7 @@ body {
     text-align: center;
     max-width: 480px;
     width: 90%;
-    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
     border: 1px solid #FFD9D9;
 }
 
@@ -161,7 +196,6 @@ body {
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    font-family: inherit;
     transition: opacity 0.2s;
 }
 
@@ -173,24 +207,6 @@ body {
     background-color: #658FE9;
 }
 
-/* Демо-кнопка */
-.demo-error-btn {
-    background-color: #E50079;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 12px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    transition: opacity 0.2s;
-}
-
-.demo-error-btn:hover {
-    opacity: 0.85;
-}
-
 /* ===== НОРМАЛЬНОЕ СОСТОЯНИЕ ===== */
 #normalState {
     display: flex;
@@ -199,7 +215,6 @@ body {
     width: 100%;
 }
 
-/* Заголовок таблицы */
 .table-title {
     width: 100%;
     font-size: 20px;
@@ -283,7 +298,44 @@ body {
     border-bottom: none;
 }
 
-/* ===== ПРАВАЯ ПАНЕЛЬ ===== */
+/* Проценты с кружочком */
+.percent-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.percent-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.percent-value {
+    font-weight: normal;
+    color: #1A2C3E;
+}
+
+.percent-badge {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.percent-badge-red {
+    background-color: #EB4343;
+}
+
+.percent-badge-orange {
+    background-color: #EB7E43;
+}
+
+.percent-badge-green {
+    background-color: #3AC34A;
+}
+
+/* Правая панель */
 .right-panel {
     flex: 1.2;
     min-width: 260px;
@@ -382,9 +434,9 @@ body {
 }
 
 .alert-badge {
-    width: 8px;
-    height: 8px;
-    border-radius: 10px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
 }
 
 .alert-red {
@@ -396,14 +448,31 @@ body {
 }
 
 .alert-orange {
-    background-color: orange;
+    background-color: #EB7E43;
 }
 
 .alert-text {
     color: #1E293B;
 }
 
-/* ===== АДАПТИВ ===== */
+/* Демо-кнопки */
+.demo-error-btn {
+    background-color: #E50079;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.demo-error-btn:hover {
+    opacity: 0.85;
+}
+
+/* Адаптив */
 @media (max-width: 850px) {
     .content-card {
         flex-direction: column;
